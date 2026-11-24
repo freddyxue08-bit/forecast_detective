@@ -1,0 +1,12 @@
+# Virtual environment: thousands of installed library files.
+# Anyone can rebuild it with: pip install -r requirements.txt
+.venv/
+
+# Python's compiled-bytecode cache. Created automatically, differs per machine.
+__pycache__/
+
+# Secrets (database password, API keys). Must never reach GitHub.
+.env
+
+# Personal VS Code editor settings.
+.vscode/
