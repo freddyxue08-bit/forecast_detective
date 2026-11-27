@@ -42,7 +42,9 @@ Task 1.1 details:
 - 2026-11-26, step 1 ✅: geocoding works and prints `Toronto, Canada: 43.70643, -79.39864`.
   - Learned: reading API docs (endpoint / params / response shape / errors), nested access (dict key → list index → dict key), storing results in variables, dict keys vs list positions, f-strings.
   - Watch-outs: run the code before asking for a check; key typos (`lattitude`); quotes around strings.
-- Step 2 (next): fetch 2025 daily weather for the geocoded coordinates (Historical Weather API).
+- 2026-11-26, step 2 ✅: chained request fetches 2025 daily weather and prints 5 daily keys + `365`.
+  - Learned: parallel lists, reading tracebacks (last line + your file's line), the crash line isn't always the cause line, 400 errors show the built URL, `%2C` = comma, multi-line params dicts.
+  - Claude laid out both params dicts with blanks at your request; you filled them.
 - Step 3: summary (days, hottest day, total rain) + save fixtures for 2 cities.
 
 **Next up:** finish 1.2, then 1.3 (`build_clues()`).
