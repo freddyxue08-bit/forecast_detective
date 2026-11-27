@@ -47,4 +47,4 @@ Task 1.1 details:
   - Claude laid out both params dicts with blanks at your request; you filled them.
 - Step 3: summary (days, hottest day, total rain) + save fixtures for 2 cities.
 
-**Next up:** finish 1.2, then 1.3 (`build_clues()`).
+**Next up (next session):** if not done, commit step 2. Then task 1.2 step 3: print the hottest day (`max` → `.index` → same position) and total rain (`sum`, `round`), save `weather` to `tests/fixtures/toronto_2025.json` (`mkdir -p tests/fixtures`, `json.dump`), repeat for a hot desert/tropical city. Bonus: what unit is `daylight_duration`? Then task 1.3 (`build_clues()`).
