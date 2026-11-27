@@ -21,14 +21,28 @@ Tracker kept by Claude (the learning coach). You write the code; this file recor
 
 ## Log
 
-### 2026-11-24: Task 1.1 (in progress)
+### 2026-11-24: Task 1.1 ✅ DONE
+- `main` and `week-1-engine` pushed to GitHub (freddyxue08-bit/forecast_detective), both at `063c6f3`.
+- Learned along the way: VS Code "New File" uses the selected folder; `.gitignore` patterns and `#` comments; `pip freeze >`; `>` vs `>>`; `git branch -m old new` vs renaming the current branch; remotes and `push -u`.
+- Claude wrote: README polish, final `.gitignore` (explained line by line), the push commands (explained).
+
+Task 1.1 details:
 - Done: folder `~/forecast_detective` and venv created and activated.
 - Found in review: `README.md` was created *inside* `.venv/` instead of the project root. The `.gitignore` you pasted is the one Python creates automatically inside `.venv/`. There is no root `.gitignore` yet.
 - Learned: what `.gitignore` is for (rebuildable files, generated files, secrets, editor clutter). First attempt contained the explanation text instead of patterns; `#` comments are the fix.
 - README: finished (Claude did the wording/formatting polish at your request; it's docs, not code).
 - `.gitignore`: v3 had inline comments (`.venv #...`), which Git reads as part of the pattern, so nothing matched. Claude wrote the final version at your request and explained each line. Key lessons: `#` is a comment only at the start of a line; a trailing `/` means folder; `.env` holds secrets.
-- Still to do: `httpx` + `requirements.txt`, `git init`, check `git status`, commit, push, branch `week-1-engine`.
+- Done: `httpx` installed, `requirements.txt` via `pip freeze` (learned: dependencies), git init, first commit `063c6f3` (only the 4 right files tracked, so `.gitignore` works ✓), branch `week-1-engine` ✓.
+- Still to do: rename `master` → `main`, create GitHub repo, add remote, push both branches.
 - Update: README moved to the root ✓. Root `.gitignore` created but **empty (0 bytes)**, probably not saved yet.
 - Still to do: write your own root `.gitignore`, install `httpx` + `requirements.txt`, `git init`, commit, push to GitHub, create branch `week-1-engine`.
 
-**Next up:** finish 1.1, then 1.2 (explore the Open-Meteo API).
+### Task 1.2: Explore Open-Meteo (started 2026-11-24)
+- Goal: `scripts/explore_weather.py` geocodes a city, fetches a year of daily weather, prints a summary, and saves raw JSON to `tests/fixtures/`.
+- 2026-11-26, step 1 ✅: geocoding works and prints `Toronto, Canada: 43.70643, -79.39864`.
+  - Learned: reading API docs (endpoint / params / response shape / errors), nested access (dict key → list index → dict key), storing results in variables, dict keys vs list positions, f-strings.
+  - Watch-outs: run the code before asking for a check; key typos (`lattitude`); quotes around strings.
+- Step 2 (next): fetch 2025 daily weather for the geocoded coordinates (Historical Weather API).
+- Step 3: summary (days, hottest day, total rain) + save fixtures for 2 cities.
+
+**Next up:** finish 1.2, then 1.3 (`build_clues()`).
