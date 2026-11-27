@@ -37,7 +37,12 @@ Task 1.1 details:
 - Update: README moved to the root ✓. Root `.gitignore` created but **empty (0 bytes)**, probably not saved yet.
 - Still to do: write your own root `.gitignore`, install `httpx` + `requirements.txt`, `git init`, commit, push to GitHub, create branch `week-1-engine`.
 
-### Task 1.2: Explore Open-Meteo (started 2026-11-24)
+### Task 1.2: Explore Open-Meteo ✅ DONE 2026-11-27 (commit `5492226`, pushed)
+- Fixtures: `toronto_2025.json` (max 36.0 °C, 817.2 mm rain) and `cairo_2025.json` (max 43.9 °C, 8.8 mm rain), 365 days each, no gaps.
+- Habit to watch: commit messages must describe that commit (`e4f1a2d` reused an old message).
+- Mini-quiz asked: why fixtures? why `params=`? what the empty-200 response teaches.
+
+Task 1.2 details:
 - Goal: `scripts/explore_weather.py` geocodes a city, fetches a year of daily weather, prints a summary, and saves raw JSON to `tests/fixtures/`.
 - 2026-11-26, step 1 ✅: geocoding works and prints `Toronto, Canada: 43.70643, -79.39864`.
   - Learned: reading API docs (endpoint / params / response shape / errors), nested access (dict key → list index → dict key), storing results in variables, dict keys vs list positions, f-strings.
@@ -48,4 +53,14 @@ Task 1.1 details:
 - 2026-11-27, step 3 (almost): hottest day + total rain printed (Toronto: 2025-06-24, 36.0 °C; 817.2 mm); `CITY` constant; `tests/fixtures/toronto_2025.json` saved (lowercase). Left: second city fixture, commit + push.
   - Learned: `max` / `.index` / `sum` / `round`, `with open(..., "w")` + `json.dump`, constants in CAPS, lowercase filenames (Linux is case-sensitive), `+` = space in URLs.
 
-**Next up (next session):** if not done, commit step 2. Then task 1.2 step 3: print the hottest day (`max` → `.index` → same position) and total rain (`sum`, `round`), save `weather` to `tests/fixtures/toronto_2025.json` (`mkdir -p tests/fixtures`, `json.dump`), repeat for a hot desert/tropical city. Bonus: what unit is `daylight_duration`? Then task 1.3 (`build_clues()`).
+- Mini-quiz result: 1.5/3. Fixtures = fast, offline, repeatable tests; `params=` = readable + safe URL encoding; a 200 status doesn't prove the content is right, so validate it. Re-ask at the end of week 1.
+
+### Task 1.3: `build_clues()` (started 2026-11-27)
+- Parts: 1.3a hottest/coldest/total rain · 1.3b daylight hours · 1.3c monthly average highs.
+- Contract: `{"hottest": {"date", "temp_c"}, "coldest": {"date", "temp_c"}, "total_rain_mm"}` (1.3b/c will add more keys).
+- 2026-11-27: you wrote the logic (max/min/.index/sum, all correct) after a first attempt with C-style `{}` braces. Learned: Python functions use `:` + indentation, parameters are plain names, functions only use their own input, importing a script runs it, read tracebacks bottom-up.
+- Claude did the readability refactor at your request: variables first, then `return {...}`; `response` renamed to `weather`; `print` moved out of the `with` block. This also removed the broken placeholder dict (it was a set, not a dict).
+
+- 1.3a ✅ (not committed yet): you fixed both remaining bugs yourself (pass `["daily"]`, `round(..., 1)`); Claude re-applied the readability refactor on top. Output: hottest 2025-06-24 36.0 °C, coldest 2025-03-02 -20.1 °C, rain 817.2 mm.
+
+**Next up (next session):** commit 1.3a (`app/` + PROGRESS.md) and push. Then 1.3b: daylight hours (shortest and longest day, converted from seconds; see `daily_units`).
