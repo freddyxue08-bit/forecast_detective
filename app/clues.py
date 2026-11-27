@@ -10,13 +10,19 @@ def build_clues(daily):
 
     total_rain = round(sum(daily["precipitation_sum"]), 1)
 
+    shortest_daylight=seconds_to_hours(min(daily["daylight_duration"]))
+    longest_daylight =seconds_to_hours(max(daily["daylight_duration"]))
+
     return {
         "hottest": {"date": daily["time"][hottest_i], "temp_c": hottest},
         "coldest": {"date": daily["time"][coldest_i], "temp_c": coldest},
         "total_rain_mm": total_rain,
+        "daylight_hours": {"shortest": shortest_daylight,
+        "longest": longest_daylight}
     }
 
-
+def seconds_to_hours(seconds):
+    return round(seconds/3600,1)
 if __name__ == "__main__":
     with open("tests/fixtures/toronto_2025.json") as f:
         weather = json.load(f)
