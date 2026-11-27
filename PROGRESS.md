@@ -45,6 +45,7 @@ Task 1.1 details:
 - 2026-11-26, step 2 ✅: chained request fetches 2025 daily weather and prints 5 daily keys + `365`.
   - Learned: parallel lists, reading tracebacks (last line + your file's line), the crash line isn't always the cause line, 400 errors show the built URL, `%2C` = comma, multi-line params dicts.
   - Claude laid out both params dicts with blanks at your request; you filled them.
-- Step 3: summary (days, hottest day, total rain) + save fixtures for 2 cities.
+- 2026-11-27, step 3 (almost): hottest day + total rain printed (Toronto: 2025-06-24, 36.0 °C; 817.2 mm); `CITY` constant; `tests/fixtures/toronto_2025.json` saved (lowercase). Left: second city fixture, commit + push.
+  - Learned: `max` / `.index` / `sum` / `round`, `with open(..., "w")` + `json.dump`, constants in CAPS, lowercase filenames (Linux is case-sensitive), `+` = space in URLs.
 
 **Next up (next session):** if not done, commit step 2. Then task 1.2 step 3: print the hottest day (`max` → `.index` → same position) and total rain (`sum`, `round`), save `weather` to `tests/fixtures/toronto_2025.json` (`mkdir -p tests/fixtures`, `json.dump`), repeat for a hot desert/tropical city. Bonus: what unit is `daylight_duration`? Then task 1.3 (`build_clues()`).

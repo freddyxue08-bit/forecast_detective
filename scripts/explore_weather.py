@@ -1,8 +1,10 @@
 import httpx
+import json
+CITY="Cairo"
 response = httpx.get(
     "https://geocoding-api.open-meteo.com/v1/search",
     params={
-        "name": "Toronto",
+        "name": CITY,
         "count": 1,
         "language": "en",
     },
@@ -26,3 +28,10 @@ response.raise_for_status()
 weather=response.json()
 print(weather["daily"].keys())
 print(len(weather["daily"]["time"]))
+hottest=max(weather["daily"]["temperature_2m_max"])
+i= weather["daily"]["temperature_2m_max"].index(hottest)
+print(f"Hottest day: {weather["daily"]["time"][i]} ({hottest}°C)")
+precipitation=sum(weather["daily"]["precipitation_sum"])
+print(f"Total rain: {round(precipitation,1)} mm")
+with open(f"tests/fixtures/{CITY.lower()}_2025.json", "w") as f:
+    json.dump(weather, f, indent=2)
